@@ -1,4 +1,3 @@
-
 # Unsupervised Machine Translation
 
 This repository contains the original implementation of the unsupervised PBSMT and NMT models presented in  
@@ -44,7 +43,7 @@ The first thing to do to run the NMT model is to download and preprocess data. T
 
 ```
 git clone https://github.com/facebookresearch/UnsupervisedMT.git
-cd NMT/data
+cd UnsupervisedMT/NMT
 ./get_data.sh
 ```
 
@@ -286,3 +285,7 @@ Please cite [[1]](https://arxiv.org/abs/1804.07755) and [[2]](https://arxiv.org/
   year={2017}
 }
 ```
+
+## License
+
+See the [LICENSE](LICENSE) file for more details.
