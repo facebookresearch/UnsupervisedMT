@@ -24,7 +24,8 @@ The PBSMT implementation supports:
 
 ## Dependencies
 
-* Python 2/3 with [NumPy](http://www.numpy.org/)
+* Python 3
+* [NumPy](http://www.numpy.org/)
 * [PyTorch](http://pytorch.org/)
 * [Moses](http://www.statmt.org/moses/) (clean and tokenize text / train PBSMT model)
 * [fastBPE](https://github.com/glample/fastBPE) (generate and apply BPE codes)
