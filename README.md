@@ -252,10 +252,10 @@ Please cite [[1]](https://arxiv.org/abs/1804.07755) and [[2]](https://arxiv.org/
 ### Phrase-Based \& Neural Unsupervised Machine Translation
 
 ```
-@article{lample2018phrase,
+@inproceedings{lample2018phrase,
   title={Phrase-Based \& Neural Unsupervised Machine Translation},
   author={Lample, Guillaume and Ott, Myle and Conneau, Alexis and Denoyer, Ludovic and Ranzato, Marc'Aurelio},
-  journal={arXiv preprint arXiv:1804.07755},
+  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
   year={2018}
 }
 ```
@@ -265,11 +265,11 @@ Please cite [[1]](https://arxiv.org/abs/1804.07755) and [[2]](https://arxiv.org/
 [2] G. Lample, A. Conneau, L. Denoyer, MA. Ranzato [*Unsupervised Machine Translation With Monolingual Data Only*](https://arxiv.org/abs/1711.00043)
 
 ```
-@article{lample2017unsupervised,
-  title={Unsupervised Machine Translation Using Monolingual Corpora Only},
-  author={Lample, Guillaume and Conneau, Alexis and Denoyer, Ludovic and Ranzato, Marc'Aurelio},
-  journal={arXiv preprint arXiv:1711.00043},
-  year={2017}
+@inproceedings{lample2017unsupervised,
+  title = {Unsupervised machine translation using monolingual corpora only},
+  author = {Lample, Guillaume and Conneau, Alexis and Denoyer, Ludovic and Ranzato, Marc'Aurelio},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year = {2018}
 }
 ```
 
@@ -279,11 +279,11 @@ Please cite [[1]](https://arxiv.org/abs/1804.07755) and [[2]](https://arxiv.org/
 
 \* Equal contribution. Order has been determined with a coin flip.
 ```
-@article{conneau2017word,
-  title={Word Translation Without Parallel Data},
-  author={Conneau, Alexis and Lample, Guillaume and Ranzato, Marc'Aurelio and Denoyer, Ludovic and J{\'e}gou, Herv{\'e}},
-  journal={arXiv preprint arXiv:1710.04087},
-  year={2017}
+@inproceedings{conneau2017word,
+  title = {Word Translation Without Parallel Data},
+  author = {Conneau, Alexis and Lample, Guillaume and Ranzato, Marc'Aurelio and Denoyer, Ludovic and J\'egou, Herv\'e},
+  booktitle = {International Conference on Learning Representations (ICLR)},
+  year = {2018}
 }
 ```
 
