@@ -233,8 +233,8 @@ echo "$TGT language model in: $TGT_LM_ARPA"
 # binarize language models
 if ! [[ -f "$SRC_LM_BLM" && -f "$TGT_LM_BLM" ]]; then
   echo "Binarizing language models..."
-  $TRAIN_LM -o 5 < $SRC_TRUE > $SRC_LM_BLM
-  $TRAIN_LM -o 5 < $TGT_TRUE > $TGT_LM_BLM
+  $MOSES_PATH/bin/build_binary $SRC_LM_ARPA $SRC_LM_BLM
+  $MOSES_PATH/bin/build_binary $TGT_LM_ARPA $TGT_LM_BLM
 fi
 echo "$SRC binarized language model in: $SRC_LM_BLM"
 echo "$TGT binarized language model in: $TGT_LM_BLM"
