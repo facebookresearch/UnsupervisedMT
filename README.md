@@ -26,7 +26,7 @@ The PBSMT implementation supports:
 
 * Python 3
 * [NumPy](http://www.numpy.org/)
-* [PyTorch](http://pytorch.org/)
+* [PyTorch](http://pytorch.org/) (currently tested on version 0.5)
 * [Moses](http://www.statmt.org/moses/) (clean and tokenize text / train PBSMT model)
 * [fastBPE](https://github.com/glample/fastBPE) (generate and apply BPE codes)
 * [fastText](https://github.com/facebookresearch/fastText) (generate embeddings)
