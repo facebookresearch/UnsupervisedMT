@@ -462,7 +462,8 @@ class TrainerMT(MultiprocessingEventLoop):
         # prepare the encoder / decoder inputs
         if lang1 == lang2:
             sent1, len1 = self.add_noise(sent1, len1, lang1_id)
-        sent1, sent2 = sent1.cuda(), sent2.cuda()
+        if torch.cuda.is_available():
+            sent1, sent2 = sent1.cuda(), sent2.cuda()
 
         # encoded states
         encoded = self.encoder(sent1, len1, lang1_id)
@@ -665,7 +666,8 @@ class TrainerMT(MultiprocessingEventLoop):
         self.decoder.train()
 
         # prepare batch
-        sent1, sent2, sent3 = sent1.cuda(), sent2.cuda(), sent3.cuda()
+        if torch.cuda.is_available():
+            sent1, sent2, sent3 = sent1.cuda(), sent2.cuda(), sent3.cuda()
         bs = sent1.size(1)
 
         if backprop_temperature == -1:
