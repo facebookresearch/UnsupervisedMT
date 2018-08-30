@@ -9,6 +9,8 @@ import time
 import json
 import argparse
 
+import torch
+
 from src.data.loader import check_all_data_params, load_data
 from src.utils import bool_flag, initialize_exp
 from src.model import check_mt_model_params, build_mt_model
@@ -239,7 +241,7 @@ if __name__ == '__main__':
     # initialize experiment / load data / build model
     logger = initialize_exp(params)
     data = load_data(params)
-    encoder, decoder, discriminator, lm = build_mt_model(params, data)
+    encoder, decoder, discriminator, lm = build_mt_model(params, data, torch.cuda.is_available())
 
     # initialize trainer / reload checkpoint / initialize evaluator
     trainer = TrainerMT(encoder, decoder, discriminator, lm, data, params)
