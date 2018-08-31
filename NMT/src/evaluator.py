@@ -147,7 +147,8 @@ class EvaluatorMT(object):
 
             # batch
             (sent1, len1), (sent2, len2) = batch
-            sent1, sent2 = sent1.cuda(), sent2.cuda()
+            if torch.cuda.is_available():
+                sent1, sent2 = sent1.cuda(), sent2.cuda()
 
             # encode / decode / generate
             encoded = self.encoder(sent1, len1, lang1_id)
