@@ -224,8 +224,8 @@ echo "$TGT monolingual data truecased in: $TGT_TRUE"
 # learn language models
 if ! [[ -f "$SRC_LM_ARPA" && -f "$TGT_LM_ARPA" ]]; then
   echo "Learning language models..."
-  $TRAIN_LM -o 5 < $SRC_TRUE > $SRC_LM_ARPA
-  $TRAIN_LM -o 5 < $TGT_TRUE > $TGT_LM_ARPA
+  $TRAIN_LM --temp_prefix $UMT_PATH -o 5 < $SRC_TRUE > $SRC_LM_ARPA
+  $TRAIN_LM --temp_prefix $UMT_PATH -o 5 < $TGT_TRUE > $TGT_LM_ARPA
 fi
 echo "$SRC language model in: $SRC_LM_ARPA"
 echo "$TGT language model in: $TGT_LM_ARPA"
