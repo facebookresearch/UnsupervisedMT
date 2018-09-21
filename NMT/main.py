@@ -18,7 +18,7 @@ from src.evaluator import EvaluatorMT
 
 # parse parameters
 parser = argparse.ArgumentParser(description='Language transfer')
-parser.add_argument("--exp_name", type=str, default="",
+parser.add_argument("--exp_name", type=str, default="", required=True,
                     help="Experiment name")
 parser.add_argument("--exp_id", type=str, default="",
                     help="Experiment ID")
@@ -232,7 +232,6 @@ params = parser.parse_args()
 if __name__ == '__main__':
 
     # check parameters
-    assert params.exp_name
     check_all_data_params(params)
     check_mt_model_params(params)
 
