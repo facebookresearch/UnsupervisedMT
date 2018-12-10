@@ -61,10 +61,10 @@ class TransformerEncoder(nn.Module):
             if layer_is_shared:
                 logger.info("Sharing encoder transformer parameters for layer %i" % k)
 
-            self.layers[k] = nn.ModuleList([
+            self.layers.append(nn.ModuleList([
                 # layer for first lang
                 TransformerEncoderLayer(args)
-            ])
+            ]))
             for i in range(1, self.n_langs):
                 # layer for lang i
                 if layer_is_shared:
@@ -167,10 +167,10 @@ class TransformerDecoder(nn.Module):
             if layer_is_shared:
                 logger.info("Sharing decoder transformer parameters for layer %i" % k)
 
-            self.layers[k] = nn.ModuleList([
+            self.layers.append(nn.ModuleList([
                 # layer for first lang
                 TransformerDecoderLayer(args)
-            ])
+            ]))
             for i in range(1, self.n_langs):
                 # layer for lang i
                 if layer_is_shared:

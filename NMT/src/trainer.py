@@ -466,7 +466,7 @@ class TrainerMT(MultiprocessingEventLoop):
 
         # encoded states
         encoded = self.encoder(sent1, len1, lang1_id)
-        self.stats['enc_norms_%s' % lang1].append(encoded.dis_input.data.norm(2, 1).mean())
+        self.stats['enc_norms_%s' % lang1].append(encoded.dis_input.data.norm(2, 1).mean().item())
 
         # cross-entropy scores / loss
         scores = self.decoder(encoded, sent2[:-1], lang2_id)
