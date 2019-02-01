@@ -3,7 +3,7 @@
 This repository contains the original implementation of the unsupervised PBSMT and NMT models presented in  
 [Phrase-Based & Neural Unsupervised Machine Translation](https://arxiv.org/abs/1804.07755) (EMNLP 2018).
 
-![Model](https://s3.amazonaws.com/arrival/toy_illustration_3principles_crop.png)
+![Model](./illustration.png)
 
 The NMT implementation supports:
 - Three machine translation architectures (seq2seq, biLSTM + attention, Transformer)
