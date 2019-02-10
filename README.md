@@ -32,7 +32,7 @@ The PBSMT implementation supports:
 * [fastText](https://github.com/facebookresearch/fastText) (generate embeddings)
 * [MUSE](https://github.com/facebookresearch/MUSE) (generate cross-lingual embeddings)
 
-For the NMT implementation, the `NMT/get_enfr_data.sh` script will take care of installing everything (except PyTorch). The same script is also provided for English-German: `NMT/get_deen_data.sh`. The NMT implementation only requires Moses preprocessing scripts, which does not require to install Moses.
+For the NMT implementation, the `NMT/get_data_enfr.sh` script will take care of installing everything (except PyTorch). The same script is also provided for English-German: `NMT/get_data_deen.sh`. The NMT implementation only requires Moses preprocessing scripts, which does not require to install Moses.
 
 The PBSMT implementation will require a working implementation of Moses, which you will have to install by yourself. Compiling Moses is not always straightforward, a good alternative is to download [the binary executables](http://www.statmt.org/moses/?n=moses.releases).
 
@@ -45,7 +45,7 @@ The first thing to do to run the NMT model is to download and preprocess data. T
 ```
 git clone https://github.com/facebookresearch/UnsupervisedMT.git
 cd UnsupervisedMT/NMT
-./get_enfr_data.sh
+./get_data_enfr.sh
 ```
 
 The script will successively:
@@ -65,7 +65,7 @@ The script will successively:
     + Binarize parallel data
 - Train cross-lingual embeddings
 
-`get_enfr_data.sh` contains a few parameters defined at the beginning of the file:
+`get_data_enfr.sh` contains a few parameters defined at the beginning of the file:
 - `N_MONO` number of monolingual sentences for each language (default 10000000)
 - `CODES` number of BPE codes (default 60000)
 - `N_THREADS` number of threads in data preprocessing (default 48)
@@ -90,7 +90,7 @@ Cross-lingual embeddings in: ./data/mono/all.en-fr.60000.vec
 
 Note that there are several ways to train cross-lingual embeddings:
 - Train monolingual embeddings separately for each language, and align them with [MUSE](https://github.com/facebookresearch/MUSE) (please refer to [the original paper](https://openreview.net/pdf?id=H196sainb) for more details).
-- Concatenate the source and target monolingual corpora in a single file, and train embeddings with fastText on that generated file (this is what is implemented in the `get_enfr_data.sh` script).
+- Concatenate the source and target monolingual corpora in a single file, and train embeddings with fastText on that generated file (this is what is implemented in the `get_data_enfr.sh` script).
 
 The second method works better when the source and target languages are similar and share a lot of common words (such as French and English). However, when the overlap between the source and target vocabulary is too small, the alignment will be very poor and you should opt for the first method using MUSE to generate your cross-lingual embeddings.
 
