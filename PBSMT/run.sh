@@ -111,19 +111,28 @@ echo "MUSE found in: $MUSE_PATH"
 
 cd $EMB_PATH
 
-if [ ! -f "wiki.en.vec" ]; then
+if [ ! -f "cc.en.300.vec.gz" ]; then
   echo "Downloading $SRC pretrained embeddings..."
-  wget -c https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.en.vec
+  wget -c "https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.en.300.vec.gz"
 fi
-if [ ! -f "wiki.fr.vec" ]; then
+if [ ! -f "cc.fr.300.vec.gz" ]; then
   echo "Downloading $TGT pretrained embeddings..."
-  wget -c https://dl.fbaipublicfiles.com/fasttext/vectors-wiki/wiki.fr.vec
+  wget -c "https://dl.fbaipublicfiles.com/fasttext/vectors-crawl/cc.fr.300.vec.gz"
 fi
 
-if [ "$SRC" == "en" ]; then EMB_SRC=$EMB_PATH/wiki.en.vec; fi
-if [ "$SRC" == "fr" ]; then EMB_SRC=$EMB_PATH/wiki.fr.vec; fi
-if [ "$TGT" == "en" ]; then EMB_TGT=$EMB_PATH/wiki.en.vec; fi
-if [ "$TGT" == "fr" ]; then EMB_TGT=$EMB_PATH/wiki.fr.vec; fi
+if [ ! -f "cc.en.300.vec" ]; then
+  echo "Decompressing English pretrained embeddings..."
+  gunzip -k cc.en.300.vec.gz
+fi
+if [ ! -f "cc.fr.300.vec" ]; then
+  echo "Decompressing French pretrained embeddings..."
+  gunzip -k cc.fr.300.vec.gz
+fi
+
+if [ "$SRC" == "en" ]; then EMB_SRC=$EMB_PATH/cc.en.300.vec; fi
+if [ "$SRC" == "fr" ]; then EMB_SRC=$EMB_PATH/cc.fr.300.vec; fi
+if [ "$TGT" == "en" ]; then EMB_TGT=$EMB_PATH/cc.en.300.vec; fi
+if [ "$TGT" == "fr" ]; then EMB_TGT=$EMB_PATH/cc.fr.300.vec; fi
 
 echo "Pretrained $SRC embeddings found in: $EMB_SRC"
 echo "Pretrained $TGT embeddings found in: $EMB_TGT"
