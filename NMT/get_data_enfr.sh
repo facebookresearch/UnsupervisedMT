@@ -207,8 +207,8 @@ echo "Full vocab in: $FULL_VOCAB"
 # binarize data
 if ! [[ -f "$SRC_TOK.$CODES.pth" && -f "$TGT_TOK.$CODES.pth" ]]; then
   echo "Binarizing data..."
-  $UMT_PATH/preprocess.py $FULL_VOCAB $SRC_TOK.$CODES
-  $UMT_PATH/preprocess.py $FULL_VOCAB $TGT_TOK.$CODES
+  python $UMT_PATH/preprocess.py $FULL_VOCAB $SRC_TOK.$CODES
+  python $UMT_PATH/preprocess.py $FULL_VOCAB $TGT_TOK.$CODES
 fi
 echo "EN binarized data in: $SRC_TOK.$CODES.pth"
 echo "FR binarized data in: $TGT_TOK.$CODES.pth"
@@ -246,10 +246,10 @@ $FASTBPE applybpe $TGT_TEST.$CODES $TGT_TEST $BPE_CODES $TGT_VOCAB
 
 echo "Binarizing data..."
 rm -f $SRC_VALID.$CODES.pth $TGT_VALID.$CODES.pth $SRC_TEST.$CODES.pth $TGT_TEST.$CODES.pth
-$UMT_PATH/preprocess.py $FULL_VOCAB $SRC_VALID.$CODES
-$UMT_PATH/preprocess.py $FULL_VOCAB $TGT_VALID.$CODES
-$UMT_PATH/preprocess.py $FULL_VOCAB $SRC_TEST.$CODES
-$UMT_PATH/preprocess.py $FULL_VOCAB $TGT_TEST.$CODES
+python $UMT_PATH/preprocess.py $FULL_VOCAB $SRC_VALID.$CODES
+python $UMT_PATH/preprocess.py $FULL_VOCAB $TGT_VALID.$CODES
+python $UMT_PATH/preprocess.py $FULL_VOCAB $SRC_TEST.$CODES
+python $UMT_PATH/preprocess.py $FULL_VOCAB $TGT_TEST.$CODES
 
 
 #
