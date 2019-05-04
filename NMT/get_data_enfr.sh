@@ -171,8 +171,8 @@ if ! [[ "$(wc -l < $TGT_RAW)" -eq "$N_MONO" ]]; then echo "ERROR: Number of line
 # tokenize data
 if ! [[ -f "$SRC_TOK" && -f "$TGT_TOK" ]]; then
   echo "Tokenize monolingual data..."
-  cat $SRC_RAW | $NORM_PUNC -l en | $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_TOK
-  cat $TGT_RAW | $NORM_PUNC -l fr | $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_TOK
+  cat $SRC_RAW | perl $NORM_PUNC -l en | perl $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_TOK
+  cat $TGT_RAW | perl $NORM_PUNC -l fr | perl $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_TOK
 fi
 echo "EN monolingual data tokenized in: $SRC_TOK"
 echo "FR monolingual data tokenized in: $TGT_TOK"
@@ -233,10 +233,10 @@ if ! [[ -f "$SRC_TEST.sgm" ]]; then echo "$SRC_TEST.sgm is not found!"; exit; fi
 if ! [[ -f "$TGT_TEST.sgm" ]]; then echo "$TGT_TEST.sgm is not found!"; exit; fi
 
 echo "Tokenizing valid and test data..."
-$INPUT_FROM_SGM < $SRC_VALID.sgm | $NORM_PUNC -l en | $REM_NON_PRINT_CHAR | $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_VALID
-$INPUT_FROM_SGM < $TGT_VALID.sgm | $NORM_PUNC -l fr | $REM_NON_PRINT_CHAR | $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_VALID
-$INPUT_FROM_SGM < $SRC_TEST.sgm | $NORM_PUNC -l en | $REM_NON_PRINT_CHAR | $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_TEST
-$INPUT_FROM_SGM < $TGT_TEST.sgm | $NORM_PUNC -l fr | $REM_NON_PRINT_CHAR | $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_TEST
+$INPUT_FROM_SGM < $SRC_VALID.sgm | perl $NORM_PUNC -l en | $REM_NON_PRINT_CHAR | perl $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_VALID
+$INPUT_FROM_SGM < $TGT_VALID.sgm | perl $NORM_PUNC -l fr | $REM_NON_PRINT_CHAR | perl $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_VALID
+$INPUT_FROM_SGM < $SRC_TEST.sgm | perl $NORM_PUNC -l en | $REM_NON_PRINT_CHAR | perl $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_TEST
+$INPUT_FROM_SGM < $TGT_TEST.sgm | perl $NORM_PUNC -l fr | $REM_NON_PRINT_CHAR | perl $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_TEST
 
 echo "Applying BPE to valid and test files..."
 $FASTBPE applybpe $SRC_VALID.$CODES $SRC_VALID $BPE_CODES $SRC_VOCAB
