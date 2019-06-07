@@ -3,7 +3,7 @@
 This repository contains the original implementation of the unsupervised PBSMT and NMT models presented in  
 [Phrase-Based & Neural Unsupervised Machine Translation](https://arxiv.org/abs/1804.07755) (EMNLP 2018).
 
-Note: for the NMT approach, we recommend you have a look at [Cross-lingual Language Model Pretraining](https://arxiv.org/abs/1901.07291) and the associated GitHub repository https://github.com/facebookresearch/XLM which contains a better model and a more efficient implementation of unsupervised machine translation.
+### Note: for the NMT approach, we recommend you have a look at [Cross-lingual Language Model Pretraining](https://arxiv.org/abs/1901.07291) and the associated GitHub repository https://github.com/facebookresearch/XLM which contains a better model and a more efficient implementation of unsupervised machine translation.
 
 ![Model](./illustration.png)
 
