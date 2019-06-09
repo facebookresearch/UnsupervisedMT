@@ -90,7 +90,7 @@ cd $TOOLS_PATH
 if [ ! -f "$FASTBPE" ]; then
   echo "Compiling fastBPE..."
   cd $FASTBPE_DIR
-  g++ -std=c++11 -pthread -O3 fast.cc -o fast
+  g++ -std=c++11 -pthread -O3 fastBPE/main.cc -IfastBPE -o fast
 fi
 echo "fastBPE compiled in: $FASTBPE"
 
@@ -171,8 +171,8 @@ if ! [[ "$(wc -l < $TGT_RAW)" -eq "$N_MONO" ]]; then echo "ERROR: Number of line
 # tokenize data
 if ! [[ -f "$SRC_TOK" && -f "$TGT_TOK" ]]; then
   echo "Tokenize monolingual data..."
-  cat $SRC_RAW | $NORM_PUNC -l en | $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_TOK
-  cat $TGT_RAW | $NORM_PUNC -l fr | $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_TOK
+  cat $SRC_RAW | perl $NORM_PUNC -l en | perl $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_TOK
+  cat $TGT_RAW | perl $NORM_PUNC -l fr | perl $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_TOK
 fi
 echo "EN monolingual data tokenized in: $SRC_TOK"
 echo "FR monolingual data tokenized in: $TGT_TOK"
@@ -207,8 +207,8 @@ echo "Full vocab in: $FULL_VOCAB"
 # binarize data
 if ! [[ -f "$SRC_TOK.$CODES.pth" && -f "$TGT_TOK.$CODES.pth" ]]; then
   echo "Binarizing data..."
-  $UMT_PATH/preprocess.py $FULL_VOCAB $SRC_TOK.$CODES
-  $UMT_PATH/preprocess.py $FULL_VOCAB $TGT_TOK.$CODES
+  python $UMT_PATH/preprocess.py $FULL_VOCAB $SRC_TOK.$CODES
+  python $UMT_PATH/preprocess.py $FULL_VOCAB $TGT_TOK.$CODES
 fi
 echo "EN binarized data in: $SRC_TOK.$CODES.pth"
 echo "FR binarized data in: $TGT_TOK.$CODES.pth"
@@ -233,10 +233,10 @@ if ! [[ -f "$SRC_TEST.sgm" ]]; then echo "$SRC_TEST.sgm is not found!"; exit; fi
 if ! [[ -f "$TGT_TEST.sgm" ]]; then echo "$TGT_TEST.sgm is not found!"; exit; fi
 
 echo "Tokenizing valid and test data..."
-$INPUT_FROM_SGM < $SRC_VALID.sgm | $NORM_PUNC -l en | $REM_NON_PRINT_CHAR | $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_VALID
-$INPUT_FROM_SGM < $TGT_VALID.sgm | $NORM_PUNC -l fr | $REM_NON_PRINT_CHAR | $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_VALID
-$INPUT_FROM_SGM < $SRC_TEST.sgm | $NORM_PUNC -l en | $REM_NON_PRINT_CHAR | $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_TEST
-$INPUT_FROM_SGM < $TGT_TEST.sgm | $NORM_PUNC -l fr | $REM_NON_PRINT_CHAR | $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_TEST
+perl $INPUT_FROM_SGM < $SRC_VALID.sgm | perl $NORM_PUNC -l en | perl $REM_NON_PRINT_CHAR | perl $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_VALID
+perl $INPUT_FROM_SGM < $TGT_VALID.sgm | perl $NORM_PUNC -l fr | perl $REM_NON_PRINT_CHAR | perl $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_VALID
+perl $INPUT_FROM_SGM < $SRC_TEST.sgm | perl $NORM_PUNC -l en | perl $REM_NON_PRINT_CHAR | perl $TOKENIZER -l en -no-escape -threads $N_THREADS > $SRC_TEST
+perl $INPUT_FROM_SGM < $TGT_TEST.sgm | perl $NORM_PUNC -l fr | perl $REM_NON_PRINT_CHAR | perl $TOKENIZER -l fr -no-escape -threads $N_THREADS > $TGT_TEST
 
 echo "Applying BPE to valid and test files..."
 $FASTBPE applybpe $SRC_VALID.$CODES $SRC_VALID $BPE_CODES $SRC_VOCAB
@@ -246,10 +246,10 @@ $FASTBPE applybpe $TGT_TEST.$CODES $TGT_TEST $BPE_CODES $TGT_VOCAB
 
 echo "Binarizing data..."
 rm -f $SRC_VALID.$CODES.pth $TGT_VALID.$CODES.pth $SRC_TEST.$CODES.pth $TGT_TEST.$CODES.pth
-$UMT_PATH/preprocess.py $FULL_VOCAB $SRC_VALID.$CODES
-$UMT_PATH/preprocess.py $FULL_VOCAB $TGT_VALID.$CODES
-$UMT_PATH/preprocess.py $FULL_VOCAB $SRC_TEST.$CODES
-$UMT_PATH/preprocess.py $FULL_VOCAB $TGT_TEST.$CODES
+python $UMT_PATH/preprocess.py $FULL_VOCAB $SRC_VALID.$CODES
+python $UMT_PATH/preprocess.py $FULL_VOCAB $TGT_VALID.$CODES
+python $UMT_PATH/preprocess.py $FULL_VOCAB $SRC_TEST.$CODES
+python $UMT_PATH/preprocess.py $FULL_VOCAB $TGT_TEST.$CODES
 
 
 #
