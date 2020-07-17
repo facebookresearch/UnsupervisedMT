@@ -73,7 +73,7 @@ TGT_TEST=$PARA_PATH/dev/newstest2014-fren-src.fr
 cd $TOOLS_PATH
 if [ ! -d "$MOSES" ]; then
   echo "Cloning Moses from GitHub repository..."
-  git clone https://github.com/moses-smt/mosesdecoder.git
+  git clone --depth 1 https://github.com/moses-smt/mosesdecoder.git
 fi
 echo "Moses found in: $MOSES"
 
@@ -81,7 +81,7 @@ echo "Moses found in: $MOSES"
 cd $TOOLS_PATH
 if [ ! -d "$FASTBPE_DIR" ]; then
   echo "Cloning fastBPE from GitHub repository..."
-  git clone https://github.com/glample/fastBPE
+  git clone --depth 1 https://github.com/glample/fastBPE
 fi
 echo "fastBPE found in: $FASTBPE_DIR"
 
@@ -90,7 +90,7 @@ cd $TOOLS_PATH
 if [ ! -f "$FASTBPE" ]; then
   echo "Compiling fastBPE..."
   cd $FASTBPE_DIR
-  g++ -std=c++11 -pthread -O3 fast.cc -o fast
+  g++ -std=c++11 -pthread -O3 fastBPE/main.cc -IfastBPE -o fast
 fi
 echo "fastBPE compiled in: $FASTBPE"
 
@@ -98,7 +98,7 @@ echo "fastBPE compiled in: $FASTBPE"
 cd $TOOLS_PATH
 if [ ! -d "$FASTTEXT_DIR" ]; then
   echo "Cloning fastText from GitHub repository..."
-  git clone https://github.com/facebookresearch/fastText.git
+  git clone --depth 1 https://github.com/facebookresearch/fastText.git
 fi
 echo "fastText found in: $FASTTEXT_DIR"
 
